@@ -6,16 +6,35 @@
 }
 
     <h1>@ViewData["Title"]</h1>
-<div class="panel panel-default todo-panel">
-    <div class="panel-heading">@ViewData["Title"]</div>
+    <div class="panel panel-default todo-panel">
+        <div class="panel-heading">@ViewData["Title"]</div>
 
-    <table class="table table-hover">
-        <thead>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>&#x2714;</td>
+                    <td>Item</td>
+                    <td>Due</td>
+                </tr>
+            </thead>
+
             <tr>
                 <td>&#x2714;</td>
                 <td>Item</td>
                 <td>Due</td>
             </tr>
-        </thead>
+            <tr>
+                <td>&#x2714;</td>
+                <td>Item</td>
+                <td>Due</td>
+            </tr>
         </table>
+        <div class="panel-footer add-item-form">
+            <form>
+                <div id="add-item-error" class="text-danger"></div>
+                <label for="add-item-title">Yeni yapılacak ekle:</label>
+                <input id="add-item-title">
+                <button type="button" id="add-item-button">Ekle</button>
+            </form>
+        </div>
     </div>
