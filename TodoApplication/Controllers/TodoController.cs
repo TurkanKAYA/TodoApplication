@@ -1,17 +1,33 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using TodoApplication.Models;
+using TodoApplication.Services;
 
 namespace TodoApplication.Controllers
 {
+  
     public class TodoController : Controller
     {
-        public IActionResult Index()
+        private readonly ITodoItemService service;
+
+        public TodoController(ITodoItemService _service) // depencedey injection
         {
-           
-            return View();
+            this.service = _service;
+        }
+
+        public async Task<IActionResult> IndexAsync()
+        {
+            //FakeTodoItemService service = new FakeTodoItemService();
+            // IEnumerable<TodoItem> items = service.GetIncompleteItemsAsync().Result;
+            var items = await service.GetIncompleteItemsAsync();
+            TodoViewModel vn = new TodoViewModel();
+            vn.Items = items;
+
+
+
+            ViewBag.Title = "Yapılacaklar Listesini Yönet";
+            return View(vn);
         }
     }
 }
